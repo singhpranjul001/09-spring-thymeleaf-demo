@@ -7,17 +7,31 @@
 <body>
 <h3>Student Registration Form</h3>
 <form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
-    First Name:<input type="text" th:field="*{firstName}" placeholder="First Name"/>
+    First Name:
+    <input type="text" th:field="*{firstName}" placeholder="First Name"/>
     <br><br>
-    Last Name:<input type="text" th:field="*{lastName}"placeholder="Last Name"/>
+    Last Name:
+    <input type="text" th:field="*{lastName}"placeholder="Last Name"/>
     <br><br>
-    State: <select th:field="*{state}">
-    <option th:value="Haryana">Haryana</option>
-    <option th:value="Uttarakhand">Uttarakhand</option>
-    <option th:value="Bihar">Bihar</option>
-    <option th:value="Rajasthan">Rajasthan</option>
-</select>
+    State:
+    <select th:field="*{state}">
+    <option th:each="tempState:${states}" th:value="${tempState}" th:text="${tempState}"/>
+    </select>
     <br><br>
+    Favourite Programming Language:
+    <input type="radio" th:field="*{favouriteLanguage}"
+                        th:each="tempLang : ${languages}"
+                        th:value="${tempLang}"
+                        th:text="${tempLang}"/>
+
+    <br><br>
+    Favourite Operating Systems:
+    <input type="checkbox" th:field="*{favouriteSystems}"
+                    th:each="tempSys : ${systems}"
+                    th:value="${tempSys}"
+                    th:text="${tempSys}"/>
+    <br><br>
+
     <input type="submit" value="Submit"/>
 
 </form>
